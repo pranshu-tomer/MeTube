@@ -6,3 +6,6 @@
 4. prettier - reduce conflicts
 
 5. DataBase connection
+
+6. cors - cross origin resource sharing
+7. cookie-parser
