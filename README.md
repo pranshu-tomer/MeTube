@@ -9,3 +9,9 @@
 
 6. cors - cross origin resource sharing
 7. cookie-parser
+
+8. mongoose-aggregate-paginate-v2
+9. bcrypt , jsonwebtoken
+
+10. mongoose hooks - (pre)
+11. Arrow funtion me this ka refrence nahi hota , context nahi pata hota use
