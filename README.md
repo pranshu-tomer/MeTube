@@ -15,3 +15,8 @@
 
 10. mongoose hooks - (pre)
 11. Arrow funtion me this ka refrence nahi hota , context nahi pata hota use
+
+12. multer
+13. cloudinary
+
+14. fs - node js file system
