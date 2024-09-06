@@ -20,3 +20,7 @@
 13. cloudinary
 
 14. fs - node js file system
+15. Controller
+16. Router
+
+17. Postman Collection
