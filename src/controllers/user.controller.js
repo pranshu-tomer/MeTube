@@ -165,3 +165,27 @@ export const refreshAccessToken = asyncHandler(async (req,res) => {
         new apiResponse(200,{accessToken,refreshToken},"Access token refreshed successfully")
     )
 })
+
+export const changeCurrentPassword = asyncHandler(async (req,res) => {
+    const {oldPassword,newPassword} = req.body
+    const userId = req.user?._id
+    const user = await User.findById(userId)
+
+    const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
+    if(!isPasswordCorrect){
+        throw new apiError(400,"Invalid Old Password")
+    }
+
+    user.password = newPassword
+    await user.save({validateBeforeSave: false})
+
+    return res
+    .status(200)
+    .json(new apiResponse(200,{},"Password changed successfully"))
+})
+
+export const getCurrentUser = asyncHandler(async(req,res) => {
+    return res
+    .status(200)
+    .json(200,req.user,"Current User fetched successfully")
+})
