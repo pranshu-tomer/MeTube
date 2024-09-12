@@ -22,4 +22,5 @@ useDispatch()
 store , reducers, useSelector, useDispatch
 
 -> Make a store
--> Make your reducers (in toolkit its called slices)
+-> wrap your app inside provider
+-> make slice (every feature is a slice)

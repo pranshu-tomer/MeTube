@@ -7,6 +7,8 @@ import Video from './Components/Video'
 import LogSign from './Layouts/LogSign'
 import Login from './Components/Login'
 import Home from './Layouts/Home'
+import {Provider} from 'react-redux'
+import { store } from './Redux/Store'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )
