@@ -4,22 +4,7 @@ import { toast, Toaster } from "sonner";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Redux/Slices/User/User";
 import  getUser  from "../utils/getUser"
-
-const login = async(credentials) => {
-    const response = await fetch('http://localhost:3000/api/v1/users/login',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password
-        }),
-        credentials: 'include'
-    })
-
-    return response
-}
+import login from "../utils/login"
 
 function Login(){
 

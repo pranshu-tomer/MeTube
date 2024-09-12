@@ -1,30 +1,7 @@
 import { useState } from "react"
 import { toast, Toaster } from 'sonner'
 import { useNavigate } from 'react-router-dom'
-
-async function handleLogin(credentials) {
-
-  const formData = new FormData();
-  formData.append('username', credentials.username);
-  formData.append('password', credentials.password);
-  formData.append('fullName', credentials.fullName);
-  formData.append('email', credentials.email);
-  formData.append('avatar', credentials.avatar);
-  if (credentials.coverImage) {
-    formData.append('coverImage', credentials.coverImage);
-  }
-
-  const response = await fetch('http://localhost:3000/api/v1/users/register', {
-    method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    // },
-    body: formData,
-    credentials: 'include',
-  });
-
-  return response
-}
+import handleSignUp from '../utils/signUp'
 
 function SignUp(){
 
@@ -102,7 +79,7 @@ function SignUp(){
       id: 2345,
     });
         
-    const response = await handleLogin(credentials)
+    const response = await handleSignUp(credentials)
 
     if (response.ok) {
       toast.dismiss(2345)

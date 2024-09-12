@@ -9,6 +9,7 @@ import Login from './Components/Login'
 import Home from './Layouts/Home'
 import {Provider} from 'react-redux'
 import { store } from './Redux/Store'
+import Profile from './Components/Channel/Profile'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         {
           path: '',
           element: <Video/>
+        },
+        {
+          path: 'channel',
+          element: <Profile/>
         }
       ]
   },
