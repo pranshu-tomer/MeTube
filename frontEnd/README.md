@@ -4,7 +4,9 @@ Link ()
 
 useParams()
 useEffect()
+useState()
 useNevigate()
+useDispatch()
 
 <!-- useLoaderData() -->
 
@@ -15,3 +17,9 @@ useNevigate()
 --> className = {(isActive) => ``}
 
 3. Sonner for messages
+
+4. Redux - State management Library (redux-toolkit)
+store , reducers, useSelector, useDispatch
+
+-> Make a store
+-> Make your reducers (in toolkit its called slices)
