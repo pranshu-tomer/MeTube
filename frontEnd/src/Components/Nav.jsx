@@ -1,9 +1,28 @@
 import { Search } from "lucide-react"
 import {useNavigate} from "react-router-dom"
+import {useDispatch, useSelector} from 'react-redux'
+import {removeUser} from '../Redux/Slices/User/User'
+
+const logout = async () => {
+    const response = await fetch('http://localhost:3000/api/v1/users/logout', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    });
+
+    if(response.ok){
+      console.log("LogOut Successful")
+    }else{
+      return null
+    }
+}
 
 function Nav(){
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const handleSignUp = () => {
         navigate('/user/register');
@@ -11,6 +30,14 @@ function Nav(){
     const handleLogin = () => {
         navigate('/user/login');
     }
+    const handleLogout = async () => {
+        await logout()
+        dispatch(removeUser())
+        navigate('/')
+    }
+
+    const loggedIn = useSelector((state) => state.user.loggedIn)
+    console.log(loggedIn)
 
     return (
         <header className="h-[75px] w-full border-b border-white bg-[#121212] px-4">
@@ -21,8 +48,15 @@ function Nav(){
                     <input type="text" placeholder="Search" className="bg-[#121212] border-white focus:outline-none text-white" />
                 </div>
                 <div className='text-white flex gap-8'>
-                    <button onClick={handleLogin} className="hover:font-bold">Log in</button>
-                    <button onClick={handleSignUp} className='hover:rounded-full bg-[#b17aff] px-2 py-2 rounded-md'>Sign up</button>
+                   {loggedIn ?
+                    (
+                        <button onClick={handleLogout} className='hover:rounded-full bg-[#b17aff] px-2 py-2 rounded-md'>Log out</button>
+                    ) : (
+                        <>
+                            <button onClick={handleLogin} className="hover:font-bold">Log in</button>
+                            <button onClick={handleSignUp} className='hover:rounded-full bg-[#b17aff] px-2 py-2 rounded-md'>Sign up</button>
+                        </>
+                    )}
                 </div>
             </nav>
         </header>

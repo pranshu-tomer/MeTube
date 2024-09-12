@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "sonner";
+import { useDispatch } from "react-redux";
+import { addUser } from "../Redux/Slices/User/User";
+import  getUser  from "../utils/getUser"
 
 const login = async(credentials) => {
     const response = await fetch('http://localhost:3000/api/v1/users/login',{
@@ -18,6 +22,9 @@ const login = async(credentials) => {
 }
 
 function Login(){
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
@@ -61,6 +68,11 @@ function Login(){
                     color : 'green'
                 }
             })
+            const data = await getUser()
+            if(data){
+                dispatch(addUser({user: data,loggedIn: true}))
+            }
+            navigate('/')
         }else{
             toast.dismiss(345)
             toast.error(`${response.statusText}`,{
